@@ -1,0 +1,90 @@
+# 05.07. 과제
+# 1. 사람 3명이 각각 음식을 가지고 있다. 여러분들이 person1이라고 가정하고, 다른 두명과 음식을 교환해보자
+"""
+# (이미 갖고 있는 음식은 교환 불가)
+person1 = ["치킨", "피자", "햄버거"]
+person2 = ["족발", "삼겹살", "치킨"]
+person3 = ["피자", "김밥", "떡볶이", "치킨"]
+
+while True:
+    print()
+    print(person1)
+    print(person2)
+    print(person3)
+    print()
+
+    exchange = int(input("[ (1) 교환하기 (2) 종료하기 ] 중 선택하시오. : "))
+    if exchange == 2 :
+        print("최종 리스트")
+        print("person1 : ", person1)
+        print("person2 : ", person2)
+        print("person3 : ", person3)
+        break
+    
+    elif exchange == 1 :
+        person_num = int(input("[ (1) person2  (2) person3  ] 중 교환할 상대의 '번호(2 또는 3)'를 입력하시오. : ")) # person1의 입장임으로, 2와 3 중 택1
+        if person_num == 2 :
+            print('\nperson1의 음식 리스트 : ', person1)
+            print('person2의 음식 리스트 : ', person2, '\n')
+
+            food1 = input("person1의 음식 중 교환할 음식을 선택하시오. : ")
+            food2 = input("person2의 음식 중 교환할 음식을 선택하시오. : ")
+
+            if food1 in person1 and food2 in person2 and food1 != food2 :
+                if food1 in person1:
+                    person1.remove(food1)
+                if food2 in person2:
+                    person2.remove(food2)
+                person1.append(food2)
+                person2.append(food1)
+
+            else :
+                print("음식을 잘못 입력하셨습니다.(중복되는 음식은 교환 불가)")
+        
+        elif person_num == 3 :
+            print('\nperson1의 음식 리스트 : ', person1)
+            print('person3의 음식 리스트 : ', person3, '\n')
+
+            food1 = input("person1의 음식 중 교환할 음식을 선택하시오. : ")
+            food3 = input("person3의 음식 중 교환할 음식을 선택하시오. : ")
+
+            if food1 in person1 and food3 in person3 :
+                if food1 in person1:
+                    person1.remove(food1)
+                if food3 in person2:
+                    person3.remove(food3)
+                person1.append(food3)
+                person3.append(food1)
+            else :
+                print("음식을 잘못 입력하셨습니다.(중복되는 음식은 교환 불가)")
+        else :
+            print("번호를 잘못 입력하셨습니다.")
+    else : 
+        print("번호를 잘못 입력하셨습니다.")
+"""
+
+# 2. str = "jpgpgjgpjpgjgpjgpjgpjpgjpjgp" 몇 개의 jpg가 들어가 있는지
+# 반복문, 컴프리헨션
+"""
+# 1) 반복문
+str = 'jpgpgjgpjpgjgpjgpjgpjpgjpjgp'
+word = 'jpg'
+count = 0
+
+for i in range(0 ,len(str)) :
+    if str[i:i+3] == word : # 문자열 슬라이싱(3글자씩)
+        count += 1
+    
+print('입력된 문장 중 jpg의 개수 : ', count)
+
+# 2) 컴프리헨션
+str = 'jpgpgjgpjpgjgpjgpjgpjpgjpjgp'
+counts = [word for word in str.split() if 'jpg' in word]
+print(len(counts))
+
+# 3) 또 다른 방법
+str = "jpgpgjgpjpgjgpjgpjgpjpgjpjgp"
+count = str.count('jpg')
+print('입력된 문장 중 jpg의 개수 : ', count)
+"""
+

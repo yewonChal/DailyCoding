@@ -1,0 +1,16 @@
+/ 05.24. 금일 코드, 데이터 베이스 /
+
+-- 문제 1) EMP 테이블에서 각 직원의 이름과 급여를 조회하고, 해당 직원의 급여가 부서 평균보다 높은 경우 출력
+SELECT ENAME, SAL
+FROM EMP E1 # 테이블 명 따로 지정
+WHERE SAL > (SELECT AVG(SAL) FROM EMP E2 WHERE E1.DEPTNO GROUP BY DEPTNO);
+# EMP만 적고 코드를 실행시키면, EMP명이 겹치기 때문에 오류가 발생한다. 따라서 각 EMP 뒤에 E1, E2를 각각 작성하여 테이블명을 다르게 지정해준다.
+
+# 또는
+SELECT ENAME, SAL
+FROM EMP E1, (SELECT AVG(SAL) AS_SAL, DEPTNO FROM EMP GROUP BY DEPTNO) E2 
+FROM E1.SAL > E2.AVG_SAL;
+
+
+-- 문제 2) EMP 테이블에서 부서 번호가 10인 부서에 속한 직원들 중 급여가 3000 이상인 직원의 이름과 급여 출력
+SELECT SAL
